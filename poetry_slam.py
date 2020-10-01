@@ -111,7 +111,8 @@ def lines_printed_custom(lines_list):
         # Iterate through each line (which is a list of words)
         for j in range(word_count):
             print(j)
-            lines_list[i] += line_words[random.randint(0, word_count)] + " "
+            # Add a random word in lower case from the list of words to its respective line
+            lines_list[i] += line_words[random.randint(0, word_count)].lower() + " "
         custom_poem += lines_list[i] + "\n"
 
     return custom_poem
