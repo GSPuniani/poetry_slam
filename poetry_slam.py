@@ -73,10 +73,8 @@ def lines_printed_random(lines_list):
 
     # Iterate through the reversed list
     for i in range(list_length):
-        # Assign `i` to another variable to avoid an IndexError upon adding 1 in the f-string
-        line_counter = i
         # Add a line number and a random line to the output string by calling an element with a random index
-        random_poem += f"{line_counter + 1} {lines_list[random.randint(0, list_length)]}"
+        random_poem += f"{i + 1} {lines_list[random.randint(0, list_length - 1)]}"
 
     return random_poem
 
@@ -110,12 +108,26 @@ def lines_printed_custom(lines_list):
         lines_list[i] = ""
         # Iterate through each line (which is a list of words)
         for j in range(word_count):
-            print(j)
-            # Add a random word in lower case from the list of words to its respective line
-            lines_list[i] += line_words[random.randint(0, word_count)].lower() + " "
-        custom_poem += lines_list[i] + "\n"
+            # Add a random word in lower case from the list of words to its respective line with the line number
+            lines_list[i] += line_words[random.randint(0, word_count - 1)].lower() + " "
+        custom_poem += f"{i + 1} {lines_list[i]}\n"
 
     return custom_poem
+
+
+# Stretch Challenge #1: write poems to a file
+def write_to_file(poem):
+    """
+    Takes in a poem as a string and appends it to a file.
+    
+    Parameters:
+    poem (string): a poem as a single string
+
+    Returns:
+    file: an output file with the poem appended to it
+    """
+    
+    return poem
     
     
 
