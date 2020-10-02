@@ -111,7 +111,7 @@ def lines_printed_custom(lines_list):
             # Add a random word in lower case from the list of words to its respective line with the line number
             lines_list[i] += line_words[random.randint(0, word_count - 1)].lower() + " "
         custom_poem += f"{i + 1} {lines_list[i]}\n"
-
+    # Return the poem as a single string with each line having a random word order
     return custom_poem
 
 
@@ -126,15 +126,65 @@ def write_to_file(poem):
     Returns:
     file: an output file with the poem appended to it
     """
-    
-    return poem
-    
+    with open("output.txt", "w") as outfile:
+        outfile.write(poem)
+    return "output.txt"
     
 
 
-# Assign the list of lines from the poem to a new variable
+# Stretch Challenge #3: create a menu for the user to select functions and output location
+# Provide brief background and instructions
+print("Welcome to Poetry Slam! This program lets you rearrange the content of the poem " + 
+"'Do not go gentle into that good night' by Dylan Thomas, as featured in the film 'Interstellar'.")
+
+print("Please select one of the following four options by typing in the respective number when prompted.")
+# Prompt the user for choice of function
+function_choice = input('''
+1: Returns a list of strings, where each line of the poem is an element of the list.
+2: Returns the poem with the lines in backwards order, with the original line number in place.
+3: Returns the poem with the lines in random order, with the line numbers keeping count (not original placements).
+4: Returns the poem with the words in each line in random order, 
+with the original line placements and no capitalization or punctuation.\n''')
+
+print("Please select one of the following two options by typing in the respective number when prompted.")
+# Prompt the user for choice of output
+output_choice = input('''
+1: Prints the output to the console.
+2: Writes the output to the file 'output.txt'. Note that the file is overwritten every time this option 
+is chosen.\n''')
+
+
+# Assign the list of lines from the poem to a new variable for cleaner function calls below
 poem_lines_list = get_file_lines("interstellar_poem.txt")
-# print(poem_lines_list + "\n\n")
-# print(lines_printed_backwards(poem_lines_list) + "\n\n")
-# print(lines_printed_random(poem_lines_list) + "\n\n")
-print(lines_printed_custom(poem_lines_list))
+
+# Given the outputs, use this nested if-else block to satisfy the user's request
+if function_choice == 1:
+    if output_choice == 1:
+        print(poem_lines_list)
+    elif output_choice == 2:
+        write_to_file(str(poem_lines_list))
+    else:
+        print("Please enter either '1' or '2' for your choice of output.")
+elif function_choice == 2:
+    if output_choice == 1:
+        print(lines_printed_backwards(poem_lines_list))
+    elif output_choice == 2:
+        write_to_file(lines_printed_backwards(poem_lines_list))
+    else:
+        print("Please enter either '1' or '2' for your choice of output.")
+elif function_choice == 3:
+    if output_choice == 1:
+        print(lines_printed_random(poem_lines_list))
+    elif output_choice == 2:
+        write_to_file(lines_printed_random(poem_lines_list))
+    else:
+        print("Please enter either '1' or '2' for your choice of output.")
+elif function_choice == 4:
+    if output_choice == 1:
+        print(lines_printed_custom(poem_lines_list))
+    elif output_choice == 2:
+        write_to_file(lines_printed_custom(poem_lines_list))
+    else:
+        print("Please enter either '1' or '2' for your choice of output.")
+else:
+    print("Please enter'1', '2', '3', or '4' for your choice of function.")
