@@ -35,7 +35,7 @@ def lines_printed_backwards(lines_list):
     lines_list (list): a list of strings from a poem
 
     Returns:
-    string: the poem as a string with the lines in backwards order
+    string: the poem as a string with the lines in backwards order and original line numbers before each line
     """
     # Reverse the order of the input list
     lines_list.reverse()
@@ -138,20 +138,20 @@ print("Welcome to Poetry Slam! This program lets you rearrange the content of th
 "'Do not go gentle into that good night' by Dylan Thomas, as featured in the film 'Interstellar'.")
 
 print("Please select one of the following four options by typing in the respective number when prompted.")
-# Prompt the user for choice of function
-function_choice = input('''
+# Prompt the user for choice of function and cast it as an integer
+function_choice = int(input('''
 1: Returns a list of strings, where each line of the poem is an element of the list.
 2: Returns the poem with the lines in backwards order, with the original line number in place.
 3: Returns the poem with the lines in random order, with the line numbers keeping count (not original placements).
 4: Returns the poem with the words in each line in random order, 
-with the original line placements and no capitalization or punctuation.\n''')
+with the original line placements and no capitalization or punctuation.\n'''))
 
 print("Please select one of the following two options by typing in the respective number when prompted.")
-# Prompt the user for choice of output
-output_choice = input('''
+# Prompt the user for choice of output and cast it as an integer
+output_choice = int(input('''
 1: Prints the output to the console.
 2: Writes the output to the file 'output.txt'. Note that the file is overwritten every time this option 
-is chosen.\n''')
+is chosen.\n'''))
 
 
 # Assign the list of lines from the poem to a new variable for cleaner function calls below
